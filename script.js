@@ -40,7 +40,6 @@ function createTimeBlocks(){
         newRow.attr("class", "row time-block");
         //set timeColumn attributes
         timeColumn.attr("class", "hour col-md-2");
-        timeColumn.attr("id", hours[i]);
         if(hours[i] > 8 && hours[i] < 12){
             timeColumn.text(hours[i] + morning);
             
@@ -67,12 +66,21 @@ function createTimeBlocks(){
             inputBox.attr("class", "col-md-8 future")
         };
         inputBox.attr("type", "text");
+        inputBox.attr("name", hours[i]);
+        console.log("InputBox Name: " + inputBox.attr('name'));
+        
+        var currentPlans = localStorage.getItem(hours[i]);
+        console.log("currentPlans: " + currentPlans);
+        if(currentPlans != null){
+            inputBox.val(currentPlans);
+        }
+       
 
         //set saveButton attributes
         fontAwesomeLock.attr("class", "fas fa-unlock-alt");
         saveButton.append(fontAwesomeLock);
         saveButton.attr("class", "saveBtn col-md-2");
-
+        saveButton.attr("id", hours[i]);
         //append all items to the page
         newRow.append(timeColumn);
         newRow.append(inputBox);
@@ -80,7 +88,19 @@ function createTimeBlocks(){
         $(".container").append(newRow);
     }
 
-}
+};
+
 
 getCurrentDate();
 createTimeBlocks();
+
+
+$(".saveBtn").on("click", function(){
+    console.log("Button clicked");
+    console.log($(this).attr('id'));      //returns with the hour
+    var currentPosition = $(this).attr('id');
+    //gets the value from the corresponding text box
+    console.log($('input[name=' +currentPosition +']').val());
+    var plannerInfo = $('input[name=' +currentPosition +']').val();
+    localStorage.setItem(currentPosition, plannerInfo);
+});
