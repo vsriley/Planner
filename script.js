@@ -1,16 +1,16 @@
-var currentDate = "";
 var currentHour = moment().hour();
 var morning = "AM";
 var afternoon = "PM";
 
-console.log("Moment: " + moment());
-
 var hours = [9, 10, 11, 12, 1, 2, 3, 4, 5];
 
+console.log("Moment: " + moment());
+console.log('Current Hour: ' + moment().hour());
+
 function getCurrentDate(){
-    currentDate = moment().format('LL'); 
+    //get current date
+    var currentDate = moment().format('LL'); 
     console.log("Current Date: " + currentDate);
-    console.log('Current Hour: ' + moment().hour());
     $("#currentDay").text(currentDate);
 };
 
@@ -26,6 +26,7 @@ function createTimeBlocks(){
         var fontAwesomeLock = $('<i>');
 
         newRow.attr("class", "row time-block");
+
         //set timeColumn attributes
         timeColumn.attr("class", "hour col-md-2");
         if(hours[i] > 8 && hours[i] < 12){
@@ -57,6 +58,7 @@ function createTimeBlocks(){
         inputBox.attr("name", hours[i]);
         console.log("InputBox Name: " + inputBox.attr('name'));
         
+        //set events stored in local storage
         var currentPlans = localStorage.getItem(hours[i]);
         console.log("currentPlans: " + currentPlans);
         if(currentPlans != null){
