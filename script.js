@@ -1,6 +1,5 @@
 var currentDate = "";
-var newDate = new Date();
-var currentHour = newDate.getHours();
+var currentHour = moment().hour();
 var morning = "AM";
 var afternoon = "PM";
 
@@ -11,13 +10,14 @@ var hours = [9, 10, 11, 12, 1, 2, 3, 4, 5];
 function getCurrentDate(){
     currentDate = moment().format('LL'); 
     console.log("Current Date: " + currentDate);
+    console.log('Current Hour: ' + moment().hour());
     $("#currentDay").text(currentDate);
 };
 
 function createTimeBlocks(){
     //create time blocks from 9AM to 5PM (9 hour span)
     //current time in red, past time in gray, future time in green
-    //create three separate columns, one of time, one of input, and one with save button?
+    //create three separate columns, one of time, one of input, and one with save button
     for (var i = 0; i < 9; i++){
         var newRow = $('<div>');
         var timeColumn = $('<div>');
