@@ -34,12 +34,13 @@ function createTimeBlocks(){
         var newRow = $('<div>');
         var timeColumn = $('<div>');
         var inputBox = $('<input>');
-        var buttonColumn = $('<div>');
         var saveButton = $('<button>');
+        var fontAwesomeLock = $('<i>');
 
         newRow.attr("class", "row time-block");
         //set timeColumn attributes
         timeColumn.attr("class", "hour col-md-2");
+        timeColumn.attr("id", hours[i]);
         if(hours[i] > 8 && hours[i] < 12){
             timeColumn.text(hours[i] + morning);
             
@@ -65,19 +66,17 @@ function createTimeBlocks(){
             //future hour
             inputBox.attr("class", "col-md-8 future")
         };
-
         inputBox.attr("type", "text");
 
-
         //set saveButton attributes
-        buttonColumn.attr("class", "col-md-2");
-        saveButton.attr("class", "saveBtn");
-        buttonColumn.append(saveButton);
+        fontAwesomeLock.attr("class", "fas fa-unlock-alt");
+        saveButton.append(fontAwesomeLock);
+        saveButton.attr("class", "saveBtn col-md-2");
 
         //append all items to the page
         newRow.append(timeColumn);
         newRow.append(inputBox);
-        newRow.append(buttonColumn);
+        newRow.append(saveButton);
         $(".container").append(newRow);
     }
 
