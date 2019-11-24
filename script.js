@@ -1,27 +1,15 @@
-var day = "";
-var monthNumber = "";
-var monthWord = "";
-var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-var year = "";
 var currentDate = "";
 var newDate = new Date();
 var currentHour = newDate.getHours();
 var morning = "AM";
 var afternoon = "PM";
 
+console.log("Moment: " + moment());
+
 var hours = [9, 10, 11, 12, 1, 2, 3, 4, 5];
 
 function getCurrentDate(){
-    console.log(Date());
-    console.log("Date: " + newDate.getDate());
-    console.log("Month: " + newDate.getMonth());
-    console.log("Year: " + newDate.getFullYear());
-    console.log("Current Hour: " + newDate.getHours());
-    day = newDate.getDate();
-    year = newDate.getFullYear();
-    monthNumber = newDate.getMonth();
-    monthWord = months[monthNumber];
-    currentDate = monthWord + " " + day + ", " + year;
+    currentDate = moment().format('LL'); 
     console.log("Current Date: " + currentDate);
     $("#currentDay").text(currentDate);
 };
